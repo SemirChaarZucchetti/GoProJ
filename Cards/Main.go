@@ -2,13 +2,20 @@ package main
 
 func main() {
 
-	cards := Deck{"Ace of Diamond", newCard()}
+	deck := newDeckFromFile("il mio mazzo")
+	deck.shuffle()
+	deck.saveFile("mazzo mischiato")
 
-	cards = append(cards, "Six of spade")
+	hand, remainDeck := deal(newDeckFromFile("mazzo Mischiato"), 5)
 
-	cards.print()
-}
+	print("----------------------------------\n")
+	hand.saveFile("la mia mano")
+	hand.print()
+	print("----------------------------------\n")
 
-func newCard() string {
-	return "Five of diamond"
+	print("----------------------------------\n")
+	remainDeck.saveFile("mazzo restante")
+	remainDeck.print()
+	print("----------------------------------\n")
+
 }
